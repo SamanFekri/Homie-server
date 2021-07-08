@@ -52,7 +52,7 @@ exports.getList = async function (req, res) {
     return
   }
   try {
-    let result = await Notification.find({to:req.params.id}).select('-__v')
+    let result = await Notification.find({to:req.params.id, removed: false}).select('-__v')
     result = result.reverse();
     console.log(result)
     if (result) {
