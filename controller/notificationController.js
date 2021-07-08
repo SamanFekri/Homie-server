@@ -32,7 +32,11 @@ exports.remove = async function (req, res) {
     return
   }
   try {
-    let result = await Notification.findById(req.params.id).select('-__v')
+    let result = await Notification
+        .findById(req.params.id)
+        .populate('from')
+        .populate('to')
+        .select('-__v')
     console.log(result)
     if (result) {
       result.removed = true;
