@@ -7,7 +7,9 @@ const Validator = require('validatorjs')
 
 exports.add = async function (req, res) {
   // validate body
-  console.log(req.body);
+  console.log(req.body.name);
+  console.log(req.body.email);
+  console.log(req.body.password);
   console.log("=================");
   let validator = new Validator(req.body, {
     name: 'required',
