@@ -30,7 +30,7 @@ exports.add = async function (req, res) {
       break
     }
   }
-
+  req.body.email = req.body.email.toLowerCase();
   result = await User.findOne({'email': req.body.email});
   let ans = {}
   if(result) {
@@ -81,7 +81,9 @@ exports.update = async function (req, res) {
     res.status(404).json(ans)
     return
   }
-
+  if(req.body.email) {
+    req.body.email = req.body.email.toLowerCase();
+  }
   if(req.body.email && req.body.email !== result.email) {
     result = await User.findOne({'email': req.body.email});
     if(result) {
@@ -109,6 +111,10 @@ exports.login = async function (req, res) {
     res.status(400).json(invalidRequest)
     return
   }
+
+
+  req.body.email = req.body.email.toLowerCase();
+
 
   result = await User.findOne({email: req.body.email}).select('-__v')
   if(!result) {
