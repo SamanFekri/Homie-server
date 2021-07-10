@@ -48,6 +48,12 @@ exports.add = async function (req, res) {
 
 exports.update = async function (req, res) {
   let ans = {}
+  console.log(req.body.name);
+  console.log(req.body.email);
+  console.log(req.body.token);
+  console.log(req.body.city);
+  console.log(req.body.phone);
+  console.log("------------------")
   // validate body
   let validator = new Validator(req.body, {
     token:'required',
